@@ -40,20 +40,3 @@ Run the reverse challenge container:
 ```sh
 docker compose run --build --rm rev03 ./warden 'test'
 ```
-
-## Local Solve Scripts / 本機解題腳本
-
-```sh
-python3 resolve/solve_01.py http://localhost:8081
-python3 resolve/solve_02.py 02/dist/signal.png
-docker compose build rev03
-mkdir -p 03/dist
-cid=$(docker create cyber_code-rev03)
-docker cp "$cid":/challenge/warden 03/dist/warden
-docker rm "$cid"
-python3 resolve/solve_03.py 03/dist/warden
-```
-
-For challenge release, distribute each challenge folder's README and runtime artifact. Keep `resolve/` as the instructor/author solution folder.
-
-正式發題時，可以提供各題資料夾中的 README 與題目附件。`resolve/` 建議保留給出題者或助教使用，裡面包含自動化解題與完整解法。
